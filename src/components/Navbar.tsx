@@ -27,7 +27,7 @@ export default function Navbar() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
           ? "bg-white/95 backdrop-blur-md shadow-md"
-          : "bg-transparent"
+          : "bg-black/20 backdrop-blur-sm"
       }`}
     >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -38,7 +38,13 @@ export default function Navbar() {
               <ShoppingBag className="h-5 w-5 text-white" />
             </div>
             <span className="font-serif text-2xl font-bold">
-              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              <span
+                className={`transition-colors duration-300 ${
+                  scrolled
+                    ? "bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+                    : "text-white"
+                }`}
+              >
                 Korpice
               </span>
             </span>
@@ -50,7 +56,11 @@ export default function Navbar() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm font-medium text-text-light transition-colors hover:text-primary"
+                className={`text-sm font-medium transition-colors duration-300 ${
+                  scrolled
+                    ? "text-text-light hover:text-primary"
+                    : "text-white/90 hover:text-white"
+                }`}
               >
                 {link.label}
               </a>
@@ -66,7 +76,11 @@ export default function Navbar() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="rounded-lg p-2 text-text-light transition-colors hover:bg-warm md:hidden"
+            className={`rounded-lg p-2 transition-colors md:hidden ${
+              scrolled
+                ? "text-text-light hover:bg-warm"
+                : "text-white hover:bg-white/10"
+            }`}
             aria-label="Toggle menu"
           >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -81,7 +95,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="overflow-hidden border-t border-warm bg-white md:hidden"
+            className="overflow-hidden border-t border-white/10 bg-white md:hidden"
           >
             <div className="space-y-1 px-4 py-4">
               {navLinks.map((link) => (
